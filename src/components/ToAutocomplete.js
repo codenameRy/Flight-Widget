@@ -1,13 +1,9 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import Countries from "./CountryAirportList";
 
 let newCountries = Countries;
 
-export class Autocomplete extends Component {
-//   static propTypes = {
-//     options: PropTypes.instanceOf(Array).isRequired
-//   };
+export class ToAutocomplete extends Component {
   state = {
     activeOption: 0,
     filteredOptions: [],
@@ -15,16 +11,16 @@ export class Autocomplete extends Component {
     userInput: ''
   };
   
-
   onChange = (e) => {
     console.log('onChanges');
 
-    // const { options } = this.props;
     const userInput = e.currentTarget.value;
 
     const filteredOptions = newCountries.filter(
       (country) =>
-      (country.iata_code.toLowerCase() || country.city.toLowerCase()).indexOf(userInput.toLowerCase()) > -1
+      ((country.city.toLowerCase()).indexOf(userInput.toLowerCase()) > -1 ||
+      (country.iata_code.toLowerCase()).indexOf(userInput.toLowerCase()) > -1
+      )
     );
 
     this.setState({
@@ -33,6 +29,7 @@ export class Autocomplete extends Component {
       showOptions: true,
       userInput: e.currentTarget.value
     });
+    e.preventDefault();
   };
 
   onClick = (e) => {
@@ -102,7 +99,6 @@ export class Autocomplete extends Component {
     }
     return (
       <React.Fragment>
-      {/* <form onSubmit={handleSubmit}> */}
         <div className="search">
         <label>
         Airport
@@ -113,15 +109,14 @@ export class Autocomplete extends Component {
             onKeyDown={onKeyDown}
             value={userInput}
           />
-          <input type="submit" value="" className="search-btn" />
+          {/* <input type="submit" value="" className="search-btn" /> */}
           </label>
         </div>
         {optionList}
-        <button>Submit</button>
-        {/* </form> */}
+        
       </React.Fragment>
     );
   }
 }
 
-export default Autocomplete;
+export default ToAutocomplete;

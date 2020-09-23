@@ -2,26 +2,34 @@ import React, { useEffect, useState } from "react";
 import Countries from "./CountryAirportList";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import FromAutocomplete from "./FromAutocomplete";
+import ToAutocomplete from "./ToAutocomplete";
+
 
 let newCountries = Countries;
 
 function FlightBookingSearch() {
-  const [fromCountry, setFromCountry] = useState("");
+  // const [fromCountry, setFromCountry] = useState("");
+  // const [toCountry, setToCountry] = useState("");
+  // const [outboundFlightDate, setOutboundFlightDate] = useState(new Date());
+  // const [returnFlightDate, setReturnFlightDate] = useState(new Date());
+  // const [searchResults, setSearchResults] = useState([]);
+  const [FromAutocomplete, setFromAutocomplete] = useState("");
   const [toCountry, setToCountry] = useState("");
   const [outboundFlightDate, setOutboundFlightDate] = useState(new Date());
   const [returnFlightDate, setReturnFlightDate] = useState(new Date());
   const [searchResults, setSearchResults] = useState([]);
 
-  useEffect(() => {
-    const results = newCountries.map((country) => (
-      <option key={country.iata_code}>{country.city} {country.iata_code}</option>
-    ))
-    setSearchResults(results);
-  }, [fromCountry]);
+  // useEffect(() => {
+  //   const results = newCountries.map((country) => (
+  //     <option key={country.iata_code}>{country.city} {country.iata_code}</option>
+  //   ))
+  //   setSearchResults(results);
+  // }, [fromCountry]);
 
 const handleSubmit = (event) => {
   console.log(`
-      From: ${fromCountry}
+      From: ${FromAutocomplete}
       To: ${toCountry}
       Outbound: ${outboundFlightDate}
       Return: ${returnFlightDate}
@@ -46,17 +54,13 @@ const handleSubmit = (event) => {
           <label>
             From:
             <input
-              name="fromCountry"
-              type="fromCountry"
-              value={fromCountry}
-              onChange={(e) => setFromCountry(e.target.value)}
+              name="FromAutocomplete"
+              type="FromAutocomplete"
+              value={FromAutocomplete}
+              onChange={(e) => setFromAutocomplete(e.target.value)}
               required
             />
-            <ul>
-         {searchResults.filter(item => (
-          <li>{item}</li>
-        ))}
-      </ul>
+          {FromAutocomplete}
           </label>
         </div>
 

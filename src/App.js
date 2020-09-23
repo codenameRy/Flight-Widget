@@ -4,23 +4,36 @@
 
 import React from 'react';
 import FlightBooking from './components/FlightBookingSearch';
-import Autocomplete from './components/Autocomplete'
+import FromAutocomplete from './components/FromAutocomplete';
+import ToAutocomplete from './components/ToAutocomplete'
 
 function App() {
+
+  // const handleSubmit = (event) => {
+  //   console.log(`
+  //       From: ${FromAutocomplete}
+  //       To: ${ToAutocomplete}
+  //       Outbound: ${outboundFlightDate}
+  //       Return: ${returnFlightDate}
+  //       `);
+  //   event.preventDefault();
+  // };
+  // const handleSubmit = (event) => {
+  //   console.log(`
+  //       From: ${FromAutocomplete}
+  //       To: ${ToAutocomplete}
+  //       `);
+  //   event.preventDefault();
+  // };
+
   return (
     <div>
-      <Autocomplete
-        options={[
-          "Papaya",
-          "Persimmon",
-          "Paw Paw",
-          "Prickly Pear",
-          "Peach",
-          "Pomegranate",
-          "Pineapple"
-        ]}
-      />
+      <label>
+      <FromAutocomplete />
+      <ToAutocomplete />
       <FlightBooking/>
+      <button>Submit</button>
+      </label>
     </div>
   )
 }
